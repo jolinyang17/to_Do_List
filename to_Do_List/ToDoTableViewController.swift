@@ -13,6 +13,13 @@ class ToDoTableViewController: UITableViewController {
         
         if let context = (UIApplication.shared.delegate as? AppDelegate)?. persistentContainer.viewContext {
             
+            if let coreDataToDos = try? context.fetch(ToDoCD.fetchRequest()) as? [ToDoCD] {
+                if let theToDos = coreDataToDos {
+                    toDos = theToDos
+                    tableView.reloadData()
+                }
+            }
+            
         }
         
     }
